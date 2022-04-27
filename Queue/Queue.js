@@ -1,12 +1,12 @@
 const SSL = require("../SSL/SSL");
 
-class Stack{
+class Queue{
     constructor(){
         this.list = new SSL();
     }
 
     push(data){
-        this.list.insertAt(data,0);
+        this.list.add(data);
     }
 
     pop(){
@@ -14,7 +14,7 @@ class Stack{
     }
 
     peek(){
-        this.list.getAt(0)
+        this.list.peek();
     }
 
     display(){
@@ -22,4 +22,4 @@ class Stack{
     }
 }
 
-module.exports = Stack;
+module.exports = Queue;
