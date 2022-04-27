@@ -47,6 +47,57 @@ class SSL{
         return current;
       }
   }
+
+  deleteAt(index){
+    let current = this.head;
+    let length = this.length();
+    if(index <0 || index>=length){
+      return;
+    }
+    if(index===0){
+      this.head = current.next;
+      current.next = null;
+    } else {
+      for(let i=0; i<index-1; i++){
+        current = current.next;
+      }
+      // return current;
+      current.next = current.next.next;
+    }
+  }
+
+  setAt(index, data){
+    let current = this.head;
+    let length = this.length();
+    if(index <0 || index>=length){
+      return;
+    }
+
+    if(index===0){
+      current.data = data;
+    } else {
+      for(let i=0; i<index; i++){
+        current = current.next;
+      }
+      current.data = data;
+    }
+
+  }
+
+  insertAt(index,data){
+    let newNode = new Node(data);
+    let current = this.head;
+    if(index===0){
+      this.head = newNode;
+      newNode.next = current;
+    } else {
+      for(let i=0; i<index-1; i++){
+        current = current.next;
+      }
+      newNode.next = current.next;
+      current.next = newNode;
+    }
+  }
 }
 
 module.exports = SSL;
