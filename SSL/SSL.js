@@ -39,12 +39,12 @@ class SSL{
   getAt(index){
       let current = this.head;
       if(index===0){
-          return current;
+          console.log(current.data);
       } else {
         for(let i=1; i<=index; i++){
             current = current.next;
           }
-        return current;
+        console.log(current.data)
       }
   }
 
