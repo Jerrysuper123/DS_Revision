@@ -5,11 +5,11 @@ class Queue{
         this.list = new SSL();
     }
 
-    push(data){
+    enqueue(data){
         this.list.add(data);
     }
 
-    pop(){
+    dequeue(){
         this.list.deleteAt(0);
     }
 
