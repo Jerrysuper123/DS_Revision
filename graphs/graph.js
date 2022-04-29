@@ -13,6 +13,7 @@ class Graph{
     }
 
     addNode(node){
+        //each node is a key array pair
         if(!this.list[node]){
             this.list[node] = [];
         }
@@ -36,6 +37,41 @@ class Graph{
         }
         //remove node
         delete this.list[n1];
+    }
+
+    dfs(startNode){
+
+        //3 level of funnels
+        //1. mark visited
+        //2. put into stack
+        //3. put into result
+
+        //using stack to keep track of orders, FIFO, that is why it is depth first search
+          //{A: true, B: true} - means visited (using object, faster tracking)
+        const visited = [];
+        visited[startNode] = true;
+
+        const stack = [startNode];
+        //to return later
+        const result = [];
+      
+        let currentNode;
+        //as long as there is something in the stack
+        while(stack.length){
+            //pop and push instantaneouly, resulting into depth first
+            currentNode = stack.pop();
+            result.push(currentNode);
+
+            //loop each each neightbour of currentNode, mark them as visited and push into stack
+            for(let neighbour of this.list[currentNode]){
+                //if we have not visited
+                if(!visited[neighbour]){
+                    visited[neighbour] = true;
+                    stack.push(neighbour);
+                }
+            }
+        }
+        return result;
     }
 }
 
