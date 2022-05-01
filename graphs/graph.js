@@ -39,38 +39,98 @@ class Graph{
         delete this.list[n1];
     }
 
-    dfs(startNode){
+    // dfs(startNode){
 
-        //3 level of funnels
-        //1. mark visited
-        //2. put into stack
-        //3. put into result
+    //     //3 level of funnels
+    //     //1. mark visited
+    //     //2. put into stack
+    //     //3. put into result
 
-        //using stack to keep track of orders, FIFO, that is why it is depth first search
-          //{A: true, B: true} - means visited (using object, faster tracking)
-        const visited = [];
-        visited[startNode] = true;
+    //     //using stack to keep track of orders, FIFO, that is why it is depth first search
+    //       //{A: true, B: true} - means visited (using object, faster tracking)
+    //     const visited = [];
+    //     visited[startNode] = true;
 
-        const stack = [startNode];
-        //to return later
-        const result = [];
+    //     const stack = [startNode];
+    //     //to return later
+    //     const result = [];
       
-        let currentNode;
-        //as long as there is something in the stack
+    //     let currentNode;
+    //     //as long as there is something in the stack
+    //     while(stack.length){
+    //         //pop and push instantaneouly, resulting into depth first
+    //         currentNode = stack.pop();
+    //         result.push(currentNode);
+
+    //         //loop each each neightbour of currentNode, mark them as visited and push into stack
+    //         for(let neighbour of this.list[currentNode]){
+    //             //if we have not visited
+    //             if(!visited[neighbour]){
+    //                 visited[neighbour] = true;
+    //                 stack.push(neighbour);
+    //             }
+    //         }
+    //     }
+    //     return result;
+    // }
+
+    dfs(startNode){
+        //created 3 level of funnel visited, stack, result
+        //put startNode into visited and stack
+        //while there is sth in the stack
+        //pop up the currentNode
+        //push the currentNode into result (push if from the end, pop is also from the end, resulting into FIFO)
+        //for each neighbour of the currentNode
+        //if we have not visted before, push them into the stack
+
+        let visited = [];
+        let stack = [];
+        let result  = [];
+        visited[startNode] = true;
+        stack.push(startNode);
+
         while(stack.length){
-            //pop and push instantaneouly, resulting into depth first
-            currentNode = stack.pop();
+            let currentNode = stack.pop();
             result.push(currentNode);
 
-            //loop each each neightbour of currentNode, mark them as visited and push into stack
             for(let neighbour of this.list[currentNode]){
-                //if we have not visited
                 if(!visited[neighbour]){
                     visited[neighbour] = true;
-                    stack.push(neighbour);
+                    stack.push(neighbour)
                 }
             }
         }
+
+        return result;
+    }
+
+    bfs(startNode){
+        //created 3 level of funnel visited, stack, result
+        //put startNode into visited and stack
+        //while there is sth in the stack
+        //pop up the currentNode
+        //push the currentNode into result (push if from the end, pop is also from the end, resulting into FIFO)
+        //for each neighbour of the currentNode
+        //if we have not visted before, push them into the stack
+
+        let visited = [];
+        let queue = [];
+        let result  = [];
+        visited[startNode] = true;
+        queue.push(startNode);
+
+        while(queue.length){
+            let currentNode = queue.shift();
+            result.push(currentNode);
+
+            for(let neighbour of this.list[currentNode]){
+                if(!visited[neighbour]){
+                    visited[neighbour] = true;
+                    queue.push(neighbour)
+                }
+            }
+        }
+
         return result;
     }
 }

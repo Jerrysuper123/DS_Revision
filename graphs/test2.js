@@ -19,3 +19,4 @@ g.addNeighbour("E","F");
 
 console.log(g);
 console.log(g.dfs("A"));
+console.log(g.bfs("A"));
